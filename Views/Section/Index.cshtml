@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Section>
+@{
+    ViewData["Title"] = "Rozcestník";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Rozcestník</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Reference" asp-action="Pass" class="btn btn-primary">
+                <i class="bi bi-pencil-square"></i>&nbsp Admin
+            </a>
+        </div>
+    </div>
+    <br /> <br />
+</div>
+<div class="container p-3 m-auto">
+    <div class="row">
+        
+        @foreach (var obj in Model)
+        {
+        <fieldset class="border m-2">
+            <legend>@obj.Name</legend>
+            <div class="row">
+                @foreach (var reference in obj.References.OrderBy(x => x.Order).ThenBy(x => x.Title))
+                {
+                    <div class="col-4 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@reference.Title</h5>
+                                <p class="card-text">@reference.Text</p>
+                                <a href="@reference.Url" class="btn btn-primary">Přejít</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </fieldset>
+
+
+        }
+    </div>
+
+</div>
+
+
+
+

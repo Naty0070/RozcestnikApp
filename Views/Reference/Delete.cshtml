@@ -1,0 +1,41 @@
+﻿@model Reference
+
+<form method="post" asp-action="DeleteRef">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Smazat Odkaz</h2>
+            <hr />
+        </div>
+        <input asp-for="Id" hidden></>
+        <div class="mb-3">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" disabled/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Text"></label>
+            <input asp-for="Text" class="form-control" disabled/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Url"></label>
+            <input asp-for="Url" class="form-control" disabled/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Order"></label>
+            <input asp-for="Order" class="form-control" disabled/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="SectionId"></label>
+            <select asp-for="SectionId" class="form-control" disabled>
+                @foreach (var sec in Section.Sections)
+                {
+                    <option value=@sec.Id>@sec.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Smaž</button>
+        <a asp-controller="Section" asp-action="Admin" class="btn btn-secondary" style="width:150px">
+            Zpět na rozcestník
+        </a>
+    </div>
+</form>
+

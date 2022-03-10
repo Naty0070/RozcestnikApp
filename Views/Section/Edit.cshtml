@@ -1,0 +1,27 @@
+﻿@model Section
+
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Editovat Sekci</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div> @*validace - sum*@
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span> @*validace*@
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Editovat</button>
+        <a asp-controller="Section" asp-action="Admin" class="btn btn-secondary" style="width:150px">
+            Zpět na rozcestník
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{ /*client side validation*/
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

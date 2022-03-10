@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Reference>
+@{
+    ViewData["Title"] = "Rozcestník";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Rozcestník</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Reference" asp-action="Pass" class="btn btn-primary">
+                <i class="bi bi-pencil-square"></i>&nbsp Admin
+            </a>
+        </div>
+    </div>
+    <br /> <br />
+</div>
+<div class="container p-3 m-auto">
+    <div class="row">        
+                @foreach (var obj in Model)
+                {
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@obj.Title</h5>
+                                <p class="card-text">@obj.Text</p>
+                                <a href="@obj.Url" class="btn btn-primary">Přejít</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+    </div>
+
+</div>
+
+
+
+

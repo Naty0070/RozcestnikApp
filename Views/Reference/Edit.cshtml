@@ -1,0 +1,51 @@
+﻿@model Reference
+
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Editovat Odkaz</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div> @*validace - sum*@
+        <div class="mb-3">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span> @*validace*@
+        </div>
+        <div class="mb-3">
+            <label asp-for="Text"></label>
+            <input asp-for="Text" class="form-control" />
+            <span asp-validation-for="Text" class="text-danger"></span>@*validace*@
+        </div>
+        <div class="mb-3">
+            <label asp-for="Url"></label>
+            <input asp-for="Url" class="form-control" />
+            <span asp-validation-for="Url" class="text-danger"></span> @*validace*@
+        </div>
+        <div class="mb-3">
+            <label asp-for="Order"></label>
+            <input asp-for="Order" class="form-control" />
+            <span asp-validation-for="Order" class="text-danger"></span> @*validace*@
+        </div>
+        <div class="mb-3">
+            <label asp-for="SectionId"></label>
+            <select asp-for="SectionId" class="form-control">
+                @foreach (var sec in Section.Sections)
+                {
+                    <option value=@sec.Id>@sec.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Editovat</button>
+        <a asp-controller="Section" asp-action="Admin" class="btn btn-secondary" style="width:150px">
+            Zpět na rozcestník
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{ /*client side validation*/
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Section>
+@{
+    ViewData["Title"] = "Rozcestník";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Rozcestník</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Reference" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>&nbsp Nový Odkaz
+            </a>
+            <a asp-controller="Section" asp-action="Create" class="btn btn-info">
+                <i class="bi bi-plus-circle"></i>&nbsp Nová Sekce
+            </a>
+        </div>
+    </div>
+    <br /> <br />
+</div>
+
+<div class="container m-auto">
+    <div class="row">
+        @foreach (var obj in Model)
+        {
+        <fieldset class="border m-2">
+          
+                <legend class="col-9">@obj.Name</legend>
+                <a asp-controller="Section" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mt-2 col-1"><i class="bi bi-pencil-square"></i></a>
+                <a asp-controller="Section" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mt-2 col-1"><i class="bi bi-trash-fill"></i></a>
+                <hr />
+            
+                <div class="row">
+
+                    @foreach (var reference in obj.References.OrderBy(x => x.Order).ThenBy(x => x.Title))
+                    {
+                        <div class="col-4 mb-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@reference.Title</h5>
+                                    <p class="card-text">@reference.Text</p>
+                                    <a href="@reference.Url" class="btn btn-primary m-1">Přejít</a>
+                                    <a asp-controller="Reference" asp-action="Edit" asp-route-id="@reference.Id" class="btn btn-primary m-1"><i class="bi bi-pencil-square"> Edit</i></a>
+                                    <a asp-controller="Reference" asp-action="Delete" asp-route-id="@reference.Id" class="btn btn-danger m-1"><i class="bi bi-trash-fill"></i>Smaž</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+        </fieldset>
+        }
+    </div>
+</div>
+
+   
+
+
